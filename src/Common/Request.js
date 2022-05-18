@@ -1,13 +1,19 @@
 const cache = {};
 
-export const request = (url, method = "GET") => {
-  if (url in cache) return cache[url];
+export const request = async (url, method = { method: "GET" }) => {
+  try {
+    if (url in cache) return cache[url];
 
-  return fetch(url, { method })
-    .then((res) => res.json())
-    .then((res) => {
-      cache[url] = res;
-      return res;
-    })
-    .catch((e) => new Error(e));
+    const res = await fetch(url, method);
+
+    if (res.ok) {
+      const data = await res.json();
+      cache[url] = data;
+      return data;
+    }
+
+    throw new Error("API 통신 에러");
+  } catch (e) {
+    alert(e);
+  }
 };
