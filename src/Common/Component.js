@@ -1,22 +1,32 @@
+import { request } from "./Request";
+
 export default class Component {
   $target;
   $state;
 
-  constructor($target, $state, type, fn) {
+  constructor({ $target, $state, type, fn, url, method }) {
     this.$target = $target;
-    this.$state = $state;
+    this.init({ $state, type, fn, url, method });
+  }
 
+  async init({ $state, type, fn, url, method }) {
+    await this.setUp({ $state, url, method });
     this.render();
-    this.setEvent(type, fn);
+    this.setEvent({ type, fn });
     this.mount();
   }
 
+  async setUp({ $state, url, method }) {
+    const data = $state ? $state : await request(url, method);
+    this.$state = data;
+  }
+
   setState(newState) {
-    this.$state = { ...newState };
+    this.$state = newState;
     this.render();
   }
 
-  setEvent(type, fn) {
+  setEvent({ type, fn }) {
     this.$target.addEventListener(type, fn);
   }
 
@@ -33,7 +43,7 @@ export default class Component {
     this.$target.innerHTML = this.template();
   }
 
-  subscribe(store) {
-    store.subscribe(this.$target.render());
-  }
+  // subscribe(store) {
+  //   store.subscribe(this.$target.render());
+  // }
 }
