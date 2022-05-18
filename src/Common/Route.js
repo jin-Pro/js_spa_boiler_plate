@@ -1,26 +1,8 @@
-class Route {
-  constructor() {
-    window.addEventListener("popstate", this.render);
-  }
+import { ROUTE_EVENT_NAME } from "./Constant.js";
 
-  push(url) {
-    history.pushState(null, null, url);
-    this.render(url);
-  }
+const Route = (routing) => {
+  window.addEventListener("popstate", routing);
+  window.addEventListener(ROUTE_EVENT_NAME, routing);
+};
 
-  pop() {
-    history.back();
-    this.render();
-  }
-
-  render(url = "/") {
-    switch (url) {
-      case "/":
-        return;
-      default:
-        return;
-    }
-  }
-}
-
-export const route = new Route();
+export default Route;
