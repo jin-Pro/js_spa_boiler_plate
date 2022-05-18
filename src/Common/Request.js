@@ -2,6 +2,7 @@ const cache = {};
 
 export const request = async (url, method = { method: "GET" }) => {
   try {
+    if (!url) return [];
     if (url in cache) return cache[url];
 
     const res = await fetch(url, method);

@@ -1,4 +1,4 @@
-import { request } from "./Request";
+import { request } from "./Request.js";
 
 export default class Component {
   $target;
@@ -42,8 +42,4 @@ export default class Component {
   render() {
     this.$target.innerHTML = this.template();
   }
-
-  // subscribe(store) {
-  //   store.subscribe(this.$target.render());
-  // }
 }
