@@ -36,3 +36,9 @@ Vanilla JS for SPA
 - if url is in cache, return cache[url]
 - return fetch(url)
 - default method = { method : "GET" }
+
+---
+
+### Webpack
+
+- HTTP 요청 횟수 제한 => 성능저하
