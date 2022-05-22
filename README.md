@@ -42,3 +42,4 @@ Vanilla JS for SPA
 ### Webpack
 
 - HTTP 요청 횟수 제한 => 성능저하
+- webpack server
