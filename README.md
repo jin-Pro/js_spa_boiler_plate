@@ -43,3 +43,10 @@ Vanilla JS for SPA
 
 - HTTP 요청 횟수 제한 => 성능저하
 - webpack server
+
+![webpack이전](./readmeAsset/NoWebpack.png)
+![webpack이후](./readmeAsset/Webpack.png)
+
+### babel
+
+- transpiling을 통한 크로스브라우징 이슈 도움
